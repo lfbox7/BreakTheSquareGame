@@ -17,6 +17,10 @@
 		8BE209B924079477005C44BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209B724079477005C44BE /* LaunchScreen.storyboard */; };
 		8BE209C424079477005C44BE /* BreakTheSquareGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE209C324079477005C44BE /* BreakTheSquareGameTests.swift */; };
 		8BE209CF24079477005C44BE /* BreakTheSquareGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE209CE24079477005C44BE /* BreakTheSquareGameUITests.swift */; };
+		8BE209DD2407960F005C44BE /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209DC2407960F005C44BE /* MyParticle.sks */; };
+		8BE209DF24079E8E005C44BE /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209DE24079E8E005C44BE /* square.png */; };
+		8BE209E124079E9B005C44BE /* player_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209E024079E9B005C44BE /* player_background.png */; };
+		8BE209E52407A147005C44BE /* game_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209E42407A147005C44BE /* game_background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		8BE209CA24079477005C44BE /* BreakTheSquareGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreakTheSquareGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE209CE24079477005C44BE /* BreakTheSquareGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakTheSquareGameUITests.swift; sourceTree = "<group>"; };
 		8BE209D024079477005C44BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BE209DC2407960F005C44BE /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		8BE209DE24079E8E005C44BE /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square.png; path = "../../Break The Square GUIs/Menus/square.png"; sourceTree = "<group>"; };
+		8BE209E024079E9B005C44BE /* player_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player_background.png; path = "../../Break The Square GUIs/Menus/player_background.png"; sourceTree = "<group>"; };
+		8BE209E42407A147005C44BE /* game_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_background.png; path = "../../Break The Square GUIs/Menus/game_background.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,12 +112,16 @@
 			isa = PBXGroup;
 			children = (
 				8BE209A824079474005C44BE /* AppDelegate.swift */,
-				8BE209AA24079474005C44BE /* GameScene.sks */,
-				8BE209AC24079474005C44BE /* Actions.sks */,
 				8BE209AE24079474005C44BE /* GameScene.swift */,
 				8BE209B024079474005C44BE /* GameViewController.swift */,
-				8BE209B224079474005C44BE /* Main.storyboard */,
+				8BE209E42407A147005C44BE /* game_background.png */,
+				8BE209DE24079E8E005C44BE /* square.png */,
+				8BE209E024079E9B005C44BE /* player_background.png */,
+				8BE209DC2407960F005C44BE /* MyParticle.sks */,
 				8BE209B524079477005C44BE /* Assets.xcassets */,
+				8BE209AC24079474005C44BE /* Actions.sks */,
+				8BE209AA24079474005C44BE /* GameScene.sks */,
+				8BE209B224079474005C44BE /* Main.storyboard */,
 				8BE209B724079477005C44BE /* LaunchScreen.storyboard */,
 				8BE209BA24079477005C44BE /* Info.plist */,
 			);
@@ -239,7 +251,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BE209B424079474005C44BE /* Main.storyboard in Resources */,
+				8BE209DD2407960F005C44BE /* MyParticle.sks in Resources */,
 				8BE209AB24079474005C44BE /* GameScene.sks in Resources */,
+				8BE209DF24079E8E005C44BE /* square.png in Resources */,
+				8BE209E52407A147005C44BE /* game_background.png in Resources */,
+				8BE209E124079E9B005C44BE /* player_background.png in Resources */,
 				8BE209B624079477005C44BE /* Assets.xcassets in Resources */,
 				8BE209B924079477005C44BE /* LaunchScreen.storyboard in Resources */,
 				8BE209AD24079474005C44BE /* Actions.sks in Resources */,

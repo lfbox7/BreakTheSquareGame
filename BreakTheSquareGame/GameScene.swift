@@ -10,80 +10,75 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    var squareMaxHealth = 100
+    var squareCurrentHealth = 100
+    var coins = 0//In-game currency
+    var coinWorth = 5
+    var coinReward = 20
+    var playerDamage = 5
+    var level = 0//Counter that changes difficulty and various game aspects
+    //var coinMultiplier = ["first": 4, "second": 3]//This is an experimental dictionary of multiplier values
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    var squareBroken: SKEmitterNode!
+    var gameBackground: SKSpriteNode!
+    var square: SKSpriteNode!
+    var player: SKSpriteNode!
     
     override func didMove(to view: SKView) {
+        //squareBroken = SKEmitterNode
+        gameBackground = SKSpriteNode(imageNamed: "game_background")
+        gameBackground.position = CGPoint(x: 0, y: 0)
+        self.addChild(gameBackground)
+        gameBackground.zPosition = -1
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
+        player = SKSpriteNode(imageNamed: "player_background")
+        player.position = CGPoint(x: 0, y: -500)
+        self.addChild(player)
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+        square = SKSpriteNode(imageNamed: "square")
+        square.position = CGPoint(x: 0, y: 300)
+        self.addChild(square)
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
-    }
-    
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        guard let touch = touches.first else {return}
+        let touchLocation = touch.location (in: self)
+        
+        if square.contains(touchLocation) {
+            coins += coinWorth
+            print("Coins: \(coins)")
+            squareCurrentHealth -= playerDamage
+            //squareHealthLabel.text = "\(squareCurrentHealth)/\(squareMaxHealth)"
+            print("Health: \(squareCurrentHealth)/\(squareMaxHealth)")
+            squareHealthChecker(squareHealth: squareCurrentHealth)
+        }
     }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+    func squareHealthChecker (squareHealth: Int) {//Could be renamed to healthChecker and take in health of all enemies
+        
+        //Insert an if statement to change sqaure image based on remaining health
+        if squareHealth <= 0 {
+            coins += coinReward
+            level += 1
+            levelIncrease()
+            //Call a function that does a short animation involving what's underneath the square
+        }
     }
     
+    func levelIncrease () {
+        squareMaxHealth = Int(Double(squareMaxHealth) + (Double(squareMaxHealth) * 0.25))//0.25 is a temporary increase
+        squareCurrentHealth = squareMaxHealth
+    }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     }
 }
+
+/*
+ The following are some tutorials used to build the sprites and environments of the game:
+ "SpriteKit Particle Emitters - Swift - Xcode 10" by Sean Allen
+ "iOS Swift Game Tutorial: SpriteKit Space Game (with Explosions)" by Brian Advent
+ "" by
+ */
