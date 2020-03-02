@@ -39,6 +39,14 @@ class GameScene: SKScene {
         square.position = CGPoint(x: 0, y: 300)
         self.addChild(square)
         
+        //Create a timer that activates once a level increase is made; for every n seconds, create a new SpriteNode of a projectile that moves down. When tapped, either have a custom health or dismiss/destroy the image/node
+        
+        /*
+         Some notes on what is needed to do:
+         Copy and paste the menus and recreate the imagery in Main.storyboard
+         Add dmg+ and hlth+
+         */
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -56,18 +64,31 @@ class GameScene: SKScene {
     }
     
     func squareHealthChecker (squareHealth: Int) {//Could be renamed to healthChecker and take in health of all enemies
+        print(squareMaxHealth)
+        if squareHealth < Int(Double(squareMaxHealth) * (4.0/5.0)) {
+            square.texture = SKTexture(imageNamed: "square_break_1")
+        }
+        if squareHealth < Int(Double(squareMaxHealth) * (3.0/5.0)) {
+            square.texture = SKTexture(imageNamed: "square_break_2")
+        }
+        if squareHealth < Int(Double(squareMaxHealth) * (2.0/5.0)) {
+            square.texture = SKTexture(imageNamed: "square_break_3")
+        }
+        if squareHealth < Int(Double(squareMaxHealth) * (1.0/5.0)) {
+            square.texture = SKTexture(imageNamed: "square_break_4")
+        }
         
-        //Insert an if statement to change sqaure image based on remaining health
         if squareHealth <= 0 {
             coins += coinReward
             level += 1
+            square.texture = SKTexture(imageNamed: "square")
             levelIncrease()
             //Call a function that does a short animation involving what's underneath the square
         }
     }
     
     func levelIncrease () {
-        squareMaxHealth = Int(Double(squareMaxHealth) + (Double(squareMaxHealth) * 0.25))//0.25 is a temporary increase
+        squareMaxHealth = Int(Double(squareMaxHealth) + (Double(squareMaxHealth) * 0.55))//0.25 is a temporary increase
         squareCurrentHealth = squareMaxHealth
     }
     
