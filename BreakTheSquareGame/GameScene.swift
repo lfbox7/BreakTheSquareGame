@@ -23,6 +23,8 @@ class GameScene: SKScene {
     var gameBackground: SKSpriteNode!
     var square: SKSpriteNode!
     var player: SKSpriteNode!
+    var projectile: SKSpriteNode!
+    //var gameTimer: Timer!
     
     override func didMove(to view: SKView) {
         //squareBroken = SKEmitterNode
@@ -38,6 +40,8 @@ class GameScene: SKScene {
         square = SKSpriteNode(imageNamed: "square")
         square.position = CGPoint(x: 0, y: 300)
         self.addChild(square)
+        
+        //gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(sendProjectile), userInfo: nil, repeats: true)
         
         //Create a timer that activates once a level increase is made; for every n seconds, create a new SpriteNode of a projectile that moves down. When tapped, either have a custom health or dismiss/destroy the image/node
         
@@ -91,6 +95,22 @@ class GameScene: SKScene {
         squareMaxHealth = Int(Double(squareMaxHealth) + (Double(squareMaxHealth) * 0.55))//0.25 is a temporary increase
         squareCurrentHealth = squareMaxHealth
     }
+    
+//    @objc func sendProjectile() {//Used directly from tutorial of Brian
+//        let projectilePos = GKRandomDistribution(lowestValue: 0, highestValue: 300)
+//        let position = CGFloat(projectilePos.nextInt())
+//
+//        projectile.position = CGPoint(x: position, y: self.frame.size.height + projectile.size.height)
+//
+//        self.addChild(projectile)
+//
+//        let animatedDuration: TimeInterval = 6
+//        var actionArray = [SKAction]()
+//        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -projectile.size.height), duration: animatedDuration))
+//        actionArray.append(SKAction.removeFromParent())
+//
+//        projectile.run(SKAction.sequence(actionArray))
+//    }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
