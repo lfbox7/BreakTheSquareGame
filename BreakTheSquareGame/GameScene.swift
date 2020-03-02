@@ -24,10 +24,9 @@ class GameScene: SKScene {
     var square: SKSpriteNode!
     var player: SKSpriteNode!
     var projectile: SKSpriteNode!
-    //var gameTimer: Timer!
+    var gameTimer: Timer!
     
     override func didMove(to view: SKView) {
-        //squareBroken = SKEmitterNode
         gameBackground = SKSpriteNode(imageNamed: "game_background")
         gameBackground.position = CGPoint(x: 0, y: 0)
         self.addChild(gameBackground)
@@ -36,12 +35,17 @@ class GameScene: SKScene {
         player = SKSpriteNode(imageNamed: "player_background")
         player.position = CGPoint(x: 0, y: -500)
         self.addChild(player)
+        player.zPosition = 0
         
         square = SKSpriteNode(imageNamed: "square")
         square.position = CGPoint(x: 0, y: 300)
         self.addChild(square)
+        square.zPosition = 0
         
-        //gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(sendProjectile), userInfo: nil, repeats: true)
+
+        
+        //gameTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(createProjectile), userInfo: nil, repeats: true)
+        //createProjectile()
         
         //Create a timer that activates once a level increase is made; for every n seconds, create a new SpriteNode of a projectile that moves down. When tapped, either have a custom health or dismiss/destroy the image/node
         
@@ -53,11 +57,48 @@ class GameScene: SKScene {
         
     }
     
+    @objc func createProjectile() {//Creates based on timer
+        projectile = SKSpriteNode(imageNamed: "projectile_1")
+        projectile.position = CGPoint(x: 0, y: 0)
+        self.addChild(projectile)
+        projectile.zPosition = 1
+        
+        projectileMovement()
+        
+    }
+    
+    func projectileMovement() {
+        let random = Int.random(in: -200 ..< 200)
+        
+        print ("reached")
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: random, y: 700))
+        path.addLine(to: CGPoint(x: 0, y: -600))
+        print ("reached")
+        let move = SKAction.follow(path.cgPath, asOffset: true, orientToPath: true, speed: 50)
+        print ("reached")
+        if projectile.frame.origin.y >= 300 {
+            projectile.removeFromParent()
+        }
+        
+        projectile.run(move)
+        //Destroy projectile
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {return}
-        let touchLocation = touch.location (in: self)
+        let squareLocation = touch.location (in: self)
+        let projectileLocation = touch.location(in: self)
+        var projectileTapped: Bool = true
         
-        if square.contains(touchLocation) {
+        if projectile.contains(projectileLocation) {
+            //projectile.position = CGPoint(x: 0, y: 700)//Destroy instead of relocate
+            print("Proj touched")
+            projectileTapped = false
+            projectile.removeFromParent()//Dismisses sprite
+        }
+        
+        if square.contains(squareLocation) && projectileTapped {
             coins += coinWorth
             print("Coins: \(coins)")
             squareCurrentHealth -= playerDamage
@@ -65,6 +106,7 @@ class GameScene: SKScene {
             print("Health: \(squareCurrentHealth)/\(squareMaxHealth)")
             squareHealthChecker(squareHealth: squareCurrentHealth)
         }
+        print("-----------------------------")
     }
     
     func squareHealthChecker (squareHealth: Int) {//Could be renamed to healthChecker and take in health of all enemies
@@ -121,5 +163,7 @@ class GameScene: SKScene {
  The following are some tutorials used to build the sprites and environments of the game:
  "SpriteKit Particle Emitters - Swift - Xcode 10" by Sean Allen
  "iOS Swift Game Tutorial: SpriteKit Space Game (with Explosions)" by Brian Advent
+ Paul Hudson
+ 
  "" by
  */
