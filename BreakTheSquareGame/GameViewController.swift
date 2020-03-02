@@ -47,4 +47,10 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    @IBAction func onPause(_ sender: Any) {
+        //There will be a menu here that pauses game
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

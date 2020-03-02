@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="S2H-eu-rPB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3fP-eg-aff">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -20,6 +20,9 @@
                     <navigationItem key="navigationItem" id="BxG-tc-bro">
                         <barButtonItem key="leftBarButtonItem" title="Pause" id="Lhz-Sd-mP6">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="onPause:" destination="BV1-FR-VrT" id="P2C-sV-0Ef"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
@@ -48,7 +51,8 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9DR-0O-6Uv" kind="show" id="Kvf-K3-oYd"/>
+                                    <action selector="onOpenCredits:" destination="3fP-eg-aff" eventType="touchUpInside" id="mPd-3o-jG8"/>
+                                    <segue destination="9DR-0O-6Uv" kind="show" identifier="creditsSegue" id="Kvf-K3-oYd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Xg-7G-aMo">
@@ -60,7 +64,8 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.92099208050000003" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="S2H-eu-rPB" kind="show" id="vO9-Yo-1mZ"/>
+                                    <action selector="onStartGame:" destination="3fP-eg-aff" eventType="touchUpInside" id="Ftn-kt-0OZ"/>
+                                    <segue destination="S2H-eu-rPB" kind="show" identifier="gameSegue" id="vO9-Yo-1mZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUt-Gd-l8q">
@@ -72,7 +77,8 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="w5I-dU-Iqp" kind="show" id="ibC-Hx-CmS"/>
+                                    <action selector="onOpenTutorial:" destination="3fP-eg-aff" eventType="touchUpInside" id="Ijv-I5-grT"/>
+                                    <segue destination="w5I-dU-Iqp" kind="show" identifier="tutorialSegue" id="ibC-Hx-CmS"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Break The Square" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqq-gE-Q2K">
@@ -98,33 +104,50 @@
             </objects>
             <point key="canvasLocation" x="1691" y="-1178"/>
         </scene>
-        <!--View Controller-->
+        <!--Tutorial-->
         <scene sceneID="bhw-Ru-evg">
             <objects>
-                <viewController id="XBo-lQ-FQi" sceneMemberID="viewController">
+                <viewController id="XBo-lQ-FQi" customClass="TutorialViewController" customModule="BreakTheSquareGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wbR-Tl-5ge">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="0Qr-Bj-hQM"/>
                     </view>
-                    <navigationItem key="navigationItem" id="OhF-B3-9ls"/>
+                    <navigationItem key="navigationItem" title="Tutorial" id="OhF-B3-9ls">
+                        <barButtonItem key="leftBarButtonItem" title="Back to Menus" id="ThC-3a-3GY">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="onBackToMenus:" destination="XBo-lQ-FQi" id="gSG-bg-1ar"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Continue" id="jCm-a4-pgz">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UoV-uE-5fW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1690" y="382"/>
         </scene>
-        <!--View Controller-->
+        <!--Credits-->
         <scene sceneID="Cqy-3E-Ois">
             <objects>
-                <viewController id="Gla-Bm-mKz" sceneMemberID="viewController">
+                <viewController id="Gla-Bm-mKz" customClass="CreditsViewController" customModule="BreakTheSquareGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G7e-jB-IzI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="XLQ-In-5Of"/>
                     </view>
-                    <navigationItem key="navigationItem" id="zC6-55-dJQ"/>
+                    <navigationItem key="navigationItem" title="Credits" id="zC6-55-dJQ">
+                        <barButtonItem key="leftBarButtonItem" title="Back to Menu" id="02b-EI-I8V">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="onBackToMenus:" destination="Gla-Bm-mKz" id="6w1-SI-5XA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p98-ZG-4ue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

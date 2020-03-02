@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B935D66240CC95C009808B5 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935D65240CC95C009808B5 /* TutorialViewController.swift */; };
+		8B935D68240CC975009808B5 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935D67240CC975009808B5 /* CreditsViewController.swift */; };
 		8BC01501240A4EF200656FBB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC01500240A4EF200656FBB /* MenuViewController.swift */; };
 		8BE209A924079474005C44BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE209A824079474005C44BE /* AppDelegate.swift */; };
 		8BE209AB24079474005C44BE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209AA24079474005C44BE /* GameScene.sks */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B935D65240CC95C009808B5 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		8B935D67240CC975009808B5 /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		8BC01500240A4EF200656FBB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8BE209A524079474005C44BE /* BreakTheSquareGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakTheSquareGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE209A824079474005C44BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,9 +112,11 @@
 			isa = PBXGroup;
 			children = (
 				8BE209A824079474005C44BE /* AppDelegate.swift */,
-				8BC01500240A4EF200656FBB /* MenuViewController.swift */,
 				8BE209AE24079474005C44BE /* GameScene.swift */,
 				8BE209B024079474005C44BE /* GameViewController.swift */,
+				8BC01500240A4EF200656FBB /* MenuViewController.swift */,
+				8B935D65240CC95C009808B5 /* TutorialViewController.swift */,
+				8B935D67240CC975009808B5 /* CreditsViewController.swift */,
 				8BE209DC2407960F005C44BE /* MyParticle.sks */,
 				8BE209B524079477005C44BE /* Assets.xcassets */,
 				8BE209AC24079474005C44BE /* Actions.sks */,
@@ -275,7 +281,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BE209AF24079474005C44BE /* GameScene.swift in Sources */,
+				8B935D68240CC975009808B5 /* CreditsViewController.swift in Sources */,
 				8BE209B124079474005C44BE /* GameViewController.swift in Sources */,
+				8B935D66240CC95C009808B5 /* TutorialViewController.swift in Sources */,
 				8BE209A924079474005C44BE /* AppDelegate.swift in Sources */,
 				8BC01501240A4EF200656FBB /* MenuViewController.swift in Sources */,
 			);

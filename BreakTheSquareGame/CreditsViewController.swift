@@ -1,14 +1,14 @@
 //
-//  MenuViewController.swift
+//  CreditsViewController.swift
 //  BreakTheSquareGame
 //
-//  Created by cory on 2/29/20.
+//  Created by cory on 3/1/20.
 //  Copyright © 2020 royalty. All rights reserved.
 //
 
 import UIKit
 
-class MenuViewController: UIViewController {
+class CreditsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,18 +16,12 @@ class MenuViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func onStartGame(_ sender: Any) {
-        performSegue(withIdentifier: "gameSegue", sender: nil)
+    @IBAction func onBackToMenus(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func onOpenTutorial(_ sender: Any) {
-        performSegue(withIdentifier: "tutorialSegue", sender: nil)
-    }
     
-    @IBAction func onOpenCredits(_ sender: Any) {
-        performSegue(withIdentifier: "creditsSegue", sender: nil)
-    }
-    
+
     /*
     // MARK: - Navigation
 
