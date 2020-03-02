@@ -42,9 +42,14 @@ class GameScene: SKScene {
         self.addChild(square)
         square.zPosition = 0
         
+        projectile = SKSpriteNode(imageNamed: "projectile_1")
+        projectile.position = CGPoint(x: -1000, y: -1000)
+        self.addChild(projectile)
+        projectile.zPosition = 1
+        
 
         
-        //gameTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(createProjectile), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(createProjectile), userInfo: nil, repeats: true)
         //createProjectile()
         
         //Create a timer that activates once a level increase is made; for every n seconds, create a new SpriteNode of a projectile that moves down. When tapped, either have a custom health or dismiss/destroy the image/node
@@ -68,16 +73,14 @@ class GameScene: SKScene {
     }
     
     func projectileMovement() {
-        let random = Int.random(in: -200 ..< 200)
+        print("Created")
+        let random = Int.random(in: -300 ..< 300)
         
-        print ("reached")
         let path = UIBezierPath()
         path.move(to: CGPoint(x: random, y: 700))
-        path.addLine(to: CGPoint(x: 0, y: -600))
-        print ("reached")
+        path.addLine(to: CGPoint(x: random, y: -600))
         let move = SKAction.follow(path.cgPath, asOffset: true, orientToPath: true, speed: 50)
-        print ("reached")
-        if projectile.frame.origin.y >= 300 {
+        if projectile.position.y >= 300 {
             projectile.removeFromParent()
         }
         
@@ -86,27 +89,29 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {return}
-        let squareLocation = touch.location (in: self)
-        let projectileLocation = touch.location(in: self)
-        var projectileTapped: Bool = true
-        
-        if projectile.contains(projectileLocation) {
-            //projectile.position = CGPoint(x: 0, y: 700)//Destroy instead of relocate
-            print("Proj touched")
-            projectileTapped = false
-            projectile.removeFromParent()//Dismisses sprite
+        for touch: AnyObject in touches {
+            //guard let touch = touches.first else {return}
+            let squareLocation = touch.location (in: self)
+            let projectileLocation = touch.location(in: self)
+            var projectileTapped: Bool = true
+            
+            if projectile.contains(projectileLocation) {
+                //projectile.position = CGPoint(x: 0, y: 700)//Destroy instead of relocate
+                print("Proj touched")
+                projectileTapped = false
+                projectile.removeFromParent()//Dismisses sprite
+            }
+            
+            if square.contains(squareLocation) && projectileTapped {
+                coins += coinWorth
+                print("Coins: \(coins)")
+                squareCurrentHealth -= playerDamage
+                //squareHealthLabel.text = "\(squareCurrentHealth)/\(squareMaxHealth)"
+                print("Health: \(squareCurrentHealth)/\(squareMaxHealth)")
+                squareHealthChecker(squareHealth: squareCurrentHealth)
+            }
+            print("-----------------------------")
         }
-        
-        if square.contains(squareLocation) && projectileTapped {
-            coins += coinWorth
-            print("Coins: \(coins)")
-            squareCurrentHealth -= playerDamage
-            //squareHealthLabel.text = "\(squareCurrentHealth)/\(squareMaxHealth)"
-            print("Health: \(squareCurrentHealth)/\(squareMaxHealth)")
-            squareHealthChecker(squareHealth: squareCurrentHealth)
-        }
-        print("-----------------------------")
     }
     
     func squareHealthChecker (squareHealth: Int) {//Could be renamed to healthChecker and take in health of all enemies
