@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8BC014FC240A3C6A00656FBB /* square_break_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC014F8240A3C6A00656FBB /* square_break_2.png */; };
-		8BC014FD240A3C6A00656FBB /* square_break_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC014F9240A3C6A00656FBB /* square_break_1.png */; };
-		8BC014FE240A3C6A00656FBB /* square_break_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC014FA240A3C6A00656FBB /* square_break_4.png */; };
-		8BC014FF240A3C6A00656FBB /* square_break_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC014FB240A3C6A00656FBB /* square_break_3.png */; };
 		8BC01501240A4EF200656FBB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC01500240A4EF200656FBB /* MenuViewController.swift */; };
 		8BE209A924079474005C44BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE209A824079474005C44BE /* AppDelegate.swift */; };
 		8BE209AB24079474005C44BE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209AA24079474005C44BE /* GameScene.sks */; };
@@ -23,9 +19,6 @@
 		8BE209C424079477005C44BE /* BreakTheSquareGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE209C324079477005C44BE /* BreakTheSquareGameTests.swift */; };
 		8BE209CF24079477005C44BE /* BreakTheSquareGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE209CE24079477005C44BE /* BreakTheSquareGameUITests.swift */; };
 		8BE209DD2407960F005C44BE /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209DC2407960F005C44BE /* MyParticle.sks */; };
-		8BE209DF24079E8E005C44BE /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209DE24079E8E005C44BE /* square.png */; };
-		8BE209E124079E9B005C44BE /* player_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209E024079E9B005C44BE /* player_background.png */; };
-		8BE209E52407A147005C44BE /* game_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209E42407A147005C44BE /* game_background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,10 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8BC014F8240A3C6A00656FBB /* square_break_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square_break_2.png; path = "../../Break The Square GUIs/Menus/square_break_2.png"; sourceTree = "<group>"; };
-		8BC014F9240A3C6A00656FBB /* square_break_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square_break_1.png; path = "../../Break The Square GUIs/Menus/square_break_1.png"; sourceTree = "<group>"; };
-		8BC014FA240A3C6A00656FBB /* square_break_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square_break_4.png; path = "../../Break The Square GUIs/Menus/square_break_4.png"; sourceTree = "<group>"; };
-		8BC014FB240A3C6A00656FBB /* square_break_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square_break_3.png; path = "../../Break The Square GUIs/Menus/square_break_3.png"; sourceTree = "<group>"; };
 		8BC01500240A4EF200656FBB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8BE209A524079474005C44BE /* BreakTheSquareGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakTheSquareGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE209A824079474005C44BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,9 +57,6 @@
 		8BE209CE24079477005C44BE /* BreakTheSquareGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakTheSquareGameUITests.swift; sourceTree = "<group>"; };
 		8BE209D024079477005C44BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BE209DC2407960F005C44BE /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
-		8BE209DE24079E8E005C44BE /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square.png; path = "../../Break The Square GUIs/Menus/square.png"; sourceTree = "<group>"; };
-		8BE209E024079E9B005C44BE /* player_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player_background.png; path = "../../Break The Square GUIs/Menus/player_background.png"; sourceTree = "<group>"; };
-		8BE209E42407A147005C44BE /* game_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_background.png; path = "../../Break The Square GUIs/Menus/game_background.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,13 +111,6 @@
 				8BC01500240A4EF200656FBB /* MenuViewController.swift */,
 				8BE209AE24079474005C44BE /* GameScene.swift */,
 				8BE209B024079474005C44BE /* GameViewController.swift */,
-				8BE209E42407A147005C44BE /* game_background.png */,
-				8BE209DE24079E8E005C44BE /* square.png */,
-				8BE209E024079E9B005C44BE /* player_background.png */,
-				8BC014F9240A3C6A00656FBB /* square_break_1.png */,
-				8BC014F8240A3C6A00656FBB /* square_break_2.png */,
-				8BC014FB240A3C6A00656FBB /* square_break_3.png */,
-				8BC014FA240A3C6A00656FBB /* square_break_4.png */,
 				8BE209DC2407960F005C44BE /* MyParticle.sks */,
 				8BE209B524079477005C44BE /* Assets.xcassets */,
 				8BE209AC24079474005C44BE /* Actions.sks */,
@@ -265,19 +244,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BC014FF240A3C6A00656FBB /* square_break_3.png in Resources */,
 				8BE209B424079474005C44BE /* Main.storyboard in Resources */,
-				8BC014FD240A3C6A00656FBB /* square_break_1.png in Resources */,
 				8BE209DD2407960F005C44BE /* MyParticle.sks in Resources */,
 				8BE209AB24079474005C44BE /* GameScene.sks in Resources */,
-				8BE209DF24079E8E005C44BE /* square.png in Resources */,
-				8BC014FE240A3C6A00656FBB /* square_break_4.png in Resources */,
-				8BE209E52407A147005C44BE /* game_background.png in Resources */,
-				8BE209E124079E9B005C44BE /* player_background.png in Resources */,
 				8BE209B624079477005C44BE /* Assets.xcassets in Resources */,
 				8BE209B924079477005C44BE /* LaunchScreen.storyboard in Resources */,
 				8BE209AD24079474005C44BE /* Actions.sks in Resources */,
-				8BC014FC240A3C6A00656FBB /* square_break_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
