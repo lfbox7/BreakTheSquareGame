@@ -161,6 +161,9 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+//        if projectile.position.y >= 300 {
+//            projectile.removeFromParent()
+//        }
     }
 }
 
