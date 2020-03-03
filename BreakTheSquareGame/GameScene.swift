@@ -23,7 +23,7 @@ class GameScene: SKScene {
     var gameBackground: SKSpriteNode!
     var square: SKSpriteNode!
     var player: SKSpriteNode!
-    var projectile: SKSpriteNode!
+    var projectile: SKSpriteNode!//Change to SKNode?
     var gameTimer: Timer!
     
     override func didMove(to view: SKView) {
@@ -80,11 +80,16 @@ class GameScene: SKScene {
         path.move(to: CGPoint(x: random, y: 700))
         path.addLine(to: CGPoint(x: random, y: -600))
         let move = SKAction.follow(path.cgPath, asOffset: true, orientToPath: true, speed: 50)
-        if projectile.position.y >= 300 {
-            projectile.removeFromParent()
-        }
+        //SKAction.sequence(<#T##actions: [SKAction]##[SKAction]#>)
+        projectile.run(SKAction.sequence([
+            SKAction.move(to: CGPoint(x: random, y: 700), duration: 37),
+            SKAction.removeFromParent()
+        ]))
+//        if projectile.position.y >= 300 {
+//            projectile.removeFromParent()
+//        }
         
-        projectile.run(move)
+        //projectile.run(move)
         //Destroy projectile
     }
     
