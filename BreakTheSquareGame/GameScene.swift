@@ -89,8 +89,8 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch: AnyObject in touches {
-            //guard let touch = touches.first else {return}
+        //for touch: AnyObject in touches {
+            guard let touch = touches.first else {return}
             let squareLocation = touch.location (in: self)
             let projectileLocation = touch.location(in: self)
             var projectileTapped: Bool = true
@@ -111,7 +111,7 @@ class GameScene: SKScene {
                 squareHealthChecker(squareHealth: squareCurrentHealth)
             }
             print("-----------------------------")
-        }
+        //}
     }
     
     func squareHealthChecker (squareHealth: Int) {//Could be renamed to healthChecker and take in health of all enemies
