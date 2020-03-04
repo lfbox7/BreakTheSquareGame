@@ -22,18 +22,21 @@ class GameScene: SKScene {
     var level = 0//Counter that changes difficulty and various game aspects
     //var coinMultiplier = ["first": 4, "second": 3]//This is an experimental dictionary of multiplier values
     
-    var squareBroken: SKEmitterNode!
-    var gameBackground: SKSpriteNode!
-    var square: SKSpriteNode!
-    var player: SKSpriteNode!
-    var projectile: SKSpriteNode!//Change to SKNode?
-    var underSquare: SKSpriteNode!
-    var damageShop: SKSpriteNode!
-    var gameTimer: Timer!
+    var squareBroken: SKEmitterNode!//An emitter animation for breaking the square
+    var gameBackground: SKSpriteNode!//The background of the game
+    var square: SKSpriteNode!//The square to tap
+    var player: SKSpriteNode!//The player
+    var projectile: SKSpriteNode!//A projectile (Change to SKNode?)
+    var underSquare: SKSpriteNode!//What is underneath the square???
+    var damageShop: SKSpriteNode!//Increases damage
+    var gameTimer: Timer!//A timer
     
-    var sprite: Array<SKSpriteNode>!
-    var aPlayer = AVAudioPlayer()
+    var sprite: Array<SKSpriteNode>!//A test projectile
+    var aPlayer = AVAudioPlayer()//Audio player
     
+    /*
+     Contains the creation of sprites
+     */
     override func didMove(to view: SKView) {
         print((3 * (4) + 7) % 26)
         
@@ -64,7 +67,7 @@ class GameScene: SKScene {
         self.addChild(projectile)
         projectile.zPosition = 2
         
-        //Shrink this! Also, lengthen the player bar
+        //Shrink this image! Also, lengthen the player bar and add some labels
         damageShop = SKSpriteNode(imageNamed: "shop_damage")
         self.addChild(damageShop)
         damageShop.position = CGPoint(x: -165, y: -500)
@@ -78,7 +81,6 @@ class GameScene: SKScene {
             print("Error with music")
 
         }
-        //aPlayer.play()
         
         
         
@@ -284,6 +286,9 @@ class GameScene: SKScene {
     //        projectile.run(SKAction.sequence(actionArray))
     //    }
     
+    /*
+     This may be relocated; makes sure the music is playing throughout the game (should change based on visible attacks)
+     */
     override func update(_ currentTime: TimeInterval) {
         if !aPlayer.isPlaying {
             aPlayer.play()
