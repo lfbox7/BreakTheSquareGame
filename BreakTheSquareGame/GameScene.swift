@@ -10,12 +10,13 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    var underIsSeen = false
     var squareMaxHealth = 100
     var squareCurrentHealth = 100
     var coins = 0//In-game currency
     var coinWorth = 5
     var coinReward = 20
-    var playerDamage = 5
+    var playerDamage = 20//5
     var level = 0//Counter that changes difficulty and various game aspects
     //var coinMultiplier = ["first": 4, "second": 3]//This is an experimental dictionary of multiplier values
     
@@ -24,6 +25,7 @@ class GameScene: SKScene {
     var square: SKSpriteNode!
     var player: SKSpriteNode!
     var projectile: SKSpriteNode!//Change to SKNode?
+    var underSquare: SKSpriteNode!
     var gameTimer: Timer!
     
     override func didMove(to view: SKView) {
@@ -37,6 +39,11 @@ class GameScene: SKScene {
         self.addChild(player)
         player.zPosition = 0
         
+        underSquare = SKSpriteNode(imageNamed: "square_under_1")
+        underSquare.position = CGPoint(x: 0, y: 300)
+        self.addChild(underSquare)
+        underSquare.zPosition = 0
+        
         square = SKSpriteNode(imageNamed: "square")
         square.position = CGPoint(x: 0, y: 300)
         self.addChild(square)
@@ -47,9 +54,9 @@ class GameScene: SKScene {
         self.addChild(projectile)
         projectile.zPosition = 1
         
-
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(createProjectile), userInfo: nil, repeats: true)
+        
+//        gameTimer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(createProjectile), userInfo: nil, repeats: true)
         //createProjectile()
         
         //Create a timer that activates once a level increase is made; for every n seconds, create a new SpriteNode of a projectile that moves down. When tapped, either have a custom health or dismiss/destroy the image/node
@@ -139,19 +146,56 @@ class GameScene: SKScene {
             level += 1
             square.texture = SKTexture(imageNamed: "square")
             levelIncrease()
+            print("\(level)")
             //Call a function that does a short animation involving what's underneath the square
         }
+        
+        
     }
     
     func levelIncrease () {
         squareMaxHealth = Int(Double(squareMaxHealth) + (Double(squareMaxHealth) * 0.55))//0.25 is a temporary increase
         squareCurrentHealth = squareMaxHealth
+        
+        underIsSeen = true
+        theUnderneath()
     }
     
-//    @objc func sendProjectile() {//Used directly from tutorial of Brian
-//        let projectilePos = GKRandomDistribution(lowestValue: 0, highestValue: 300)
-//        let position = CGFloat(projectilePos.nextInt())
-//
+    func theUnderneath() {
+        //let showBelowTimer: Timer!
+        if level == 3 && underIsSeen == true{
+            underSquare.texture = SKTexture(imageNamed: "square_under_1")
+            square.isHidden = true
+            Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (Timer) in
+                
+            })
+            square.isHidden = true
+            underIsSeen = false
+            square.isHidden = false
+        } else if level == 4 && underIsSeen == true{
+            underSquare.texture = SKTexture(imageNamed: "square_under_2")
+            square.isHidden = true
+            Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (Timer) in
+                self.square.isHidden = true
+            })
+            underIsSeen = false
+            square.isHidden = false
+        } else if level == 5 && underIsSeen == true{
+            underSquare.texture = SKTexture(imageNamed: "square_under_3")
+            square.isHidden = true
+            Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (Timer) in
+                self.square.isHidden = true
+            })
+            underIsSeen = false
+            square.isHidden = false
+        }
+        square.isHidden = false
+    }
+    
+    //    @objc func sendProjectile() {//Used directly from tutorial of Brian
+    //        let projectilePos = GKRandomDistribution(lowestValue: 0, highestValue: 300)
+    //        let position = CGFloat(projectilePos.nextInt())
+    //
 //        projectile.position = CGPoint(x: position, y: self.frame.size.height + projectile.size.height)
 //
 //        self.addChild(projectile)
