@@ -31,8 +31,13 @@ class GameScene: SKScene {
     var damageShop: SKSpriteNode!
     var gameTimer: Timer!
     
+    var sprite: Array<SKSpriteNode>!
+    var aPlayer = AVAudioPlayer()
+    
     override func didMove(to view: SKView) {
         print((3 * (4) + 7) % 26)
+        
+        //sprite =
         
         gameBackground = SKSpriteNode(imageNamed: "game_background")
         gameBackground.position = CGPoint(x: 0, y: 0)
@@ -65,11 +70,15 @@ class GameScene: SKScene {
         damageShop.position = CGPoint(x: -165, y: -500)
         damageShop.zPosition = 2
         
-//        let player = AVAudioPlayer()
-//        var sound = Bundle.main.path(forResource: "First Levels (Synth)", ofType: "mp3")
-//        if !player.isPlaying {
-//            player.play()
-//        }
+        
+        let sound = Bundle.main.path(forResource: "First Levels (Synth)", ofType: "mp3")
+        do {
+            aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+        } catch {
+            print("Error with music")
+
+        }
+        //aPlayer.play()
         
         
         
@@ -89,6 +98,7 @@ class GameScene: SKScene {
     }
     
     @objc func createProjectile() {//Creates based on timer
+        //Add Song 2 here, since it will play when projectiles are created
         projectile = SKSpriteNode(imageNamed: "projectile_1")
         projectile.position = CGPoint(x: 0, y: 0)
         self.addChild(projectile)
@@ -275,10 +285,9 @@ class GameScene: SKScene {
     //    }
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        //        if projectile.position.y >= 300 {
-        //            projectile.removeFromParent()
-        //        }
+        if !aPlayer.isPlaying {
+            aPlayer.play()
+        }
     }
 }
 
