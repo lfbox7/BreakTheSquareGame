@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4448A0C424100DDD0084A75A /* Second Levels (Synth).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4448A0C324100DDD0084A75A /* Second Levels (Synth).mp3 */; };
+		4448A0C624100DEA0084A75A /* First Levels (Synth).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4448A0C524100DEA0084A75A /* First Levels (Synth).mp3 */; };
 		8B935D66240CC95C009808B5 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935D65240CC95C009808B5 /* TutorialViewController.swift */; };
 		8B935D68240CC975009808B5 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935D67240CC975009808B5 /* CreditsViewController.swift */; };
 		8BC01501240A4EF200656FBB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC01500240A4EF200656FBB /* MenuViewController.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4448A0C324100DDD0084A75A /* Second Levels (Synth).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Second Levels (Synth).mp3"; path = "../../../../Desktop/Break The Square GUIs/Music/Second Levels (Synth).mp3"; sourceTree = "<group>"; };
+		4448A0C524100DEA0084A75A /* First Levels (Synth).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "First Levels (Synth).mp3"; path = "../../../../Desktop/Break The Square GUIs/Music/First Levels (Synth).mp3"; sourceTree = "<group>"; };
 		8B935D65240CC95C009808B5 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		8B935D67240CC975009808B5 /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		8BC01500240A4EF200656FBB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				8BE209AA24079474005C44BE /* GameScene.sks */,
 				8BE209B224079474005C44BE /* Main.storyboard */,
 				8BE209B724079477005C44BE /* LaunchScreen.storyboard */,
+				4448A0C324100DDD0084A75A /* Second Levels (Synth).mp3 */,
+				4448A0C524100DEA0084A75A /* First Levels (Synth).mp3 */,
 				8BE209BA24079477005C44BE /* Info.plist */,
 			);
 			path = BreakTheSquareGame;
@@ -250,8 +256,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4448A0C624100DEA0084A75A /* First Levels (Synth).mp3 in Resources */,
 				8BE209B424079474005C44BE /* Main.storyboard in Resources */,
 				8BE209DD2407960F005C44BE /* MyParticle.sks in Resources */,
+				4448A0C424100DDD0084A75A /* Second Levels (Synth).mp3 in Resources */,
 				8BE209AB24079474005C44BE /* GameScene.sks in Resources */,
 				8BE209B624079477005C44BE /* Assets.xcassets in Resources */,
 				8BE209B924079477005C44BE /* LaunchScreen.storyboard in Resources */,
