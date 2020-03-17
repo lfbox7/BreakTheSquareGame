@@ -26,22 +26,21 @@ class GameScene: SKScene {
     var gameBackground: SKSpriteNode!//The background of the game
     var square: SKSpriteNode!//The square to tap
     var player: SKSpriteNode!//The player
-    var projectile: SKSpriteNode!//A projectile (Change to SKNode?)
+    //var projectile: SKSpriteNode!//A projectile (Change to SKNode?)
     var underSquare: SKSpriteNode!//What is underneath the square???
     var damageShop: SKSpriteNode!//Increases damage
     var gameTimer: Timer!//A timer
     
-    var sprite: Array<SKSpriteNode>!//A test projectile
+    private var counter = 1
+    //private var doodle: [SKSpriteNode]!
+    private var (doodle0, doodle1, doodle2, doodle3, doodle4, doodle5, doodle6, doodle7, doodle8, doodle9, doodle10, doodle11, doodle12,doodle13, doodle14, doodle15, doodle16, doodle17, doodle18, doodle19, doodle20) = (SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"))
+    private var projectiles: [SKSpriteNode]!
     var aPlayer = AVAudioPlayer()//Audio player
     
     /*
      Contains the creation of sprites
      */
     override func didMove(to view: SKView) {
-        print((3 * (4) + 7) % 26)
-        
-        //sprite =
-        
         gameBackground = SKSpriteNode(imageNamed: "game_background")
         gameBackground.position = CGPoint(x: 0, y: 0)
         self.addChild(gameBackground)
@@ -62,10 +61,16 @@ class GameScene: SKScene {
         self.addChild(square)
         square.zPosition = 1
         
-        projectile = SKSpriteNode(imageNamed: "projectile_1")
-        projectile.position = CGPoint(x: -1000, y: -1000)
-        self.addChild(projectile)
-        projectile.zPosition = 2
+        projectiles = [doodle0, doodle1, doodle2, doodle3, doodle4, doodle5, doodle6, doodle7, doodle8, doodle9, doodle10, doodle11, doodle12, doodle13, doodle14, doodle15, doodle16, doodle17, doodle18, doodle19, doodle20]
+//        isCreated = [isCreated1, isCreated2, isCreated3, isCreated4, isCreated5, isCreated6, isCreated7, isCreated8, isCreated9, isCreated10, isCreated11, isCreated12, isCreated13, isCreated14, isCreated15, isCreated16, isCreated17, isCreated18, isCreated19, isCreated20]
+        projectiles[0] = SKSpriteNode(imageNamed: "projectile_1")
+        projectiles[0].position = CGPoint(x: -100000, y: -100000)
+        self.addChild(projectiles[0])
+        projectiles[0].zPosition = 1
+        
+        
+        
+        gameTimer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(moving), userInfo: nil, repeats: true)
         
         //Shrink this image! Also, lengthen the player bar and add some labels
         damageShop = SKSpriteNode(imageNamed: "shop_damage")
@@ -73,7 +78,7 @@ class GameScene: SKScene {
         damageShop.position = CGPoint(x: -165, y: -500)
         damageShop.zPosition = 2
         
-        
+        /*
         let sound = Bundle.main.path(forResource: "First Levels (Synth)", ofType: "mp3")
         do {
             aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
@@ -81,13 +86,7 @@ class GameScene: SKScene {
             print("Error with music")
 
         }
-        
-        
-        
-        
-//        gameTimer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(createProjectile), userInfo: nil, repeats: true)
-        createProjectile()
-        createProjectile1()
+ */
         
         //Create a timer that activates once a level increase is made; for every n seconds, create a new SpriteNode of a projectile that moves down. When tapped, either have a custom health or dismiss/destroy the image/node
         
@@ -99,63 +98,37 @@ class GameScene: SKScene {
         
     }
     
-    @objc func createProjectile() {//Creates based on timer
-        //Add Song 2 here, since it will play when projectiles are created
-        projectile = SKSpriteNode(imageNamed: "projectile_1")
-        projectile.position = CGPoint(x: 0, y: 0)
-        self.addChild(projectile)
-        projectile.zPosition = 2
-        //---Here---
-        print("Created")
-        let random = Int.random(in: -300 ..< 300)
-        
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: random, y: 700))
-        path.addLine(to: CGPoint(x: random, y: -600))
-        let move = SKAction.follow(path.cgPath, asOffset: true, orientToPath: true, speed: 50)
-        //SKAction.sequence(<#T##actions: [SKAction]##[SKAction]#>)
-        projectile.run(SKAction.sequence([
-            SKAction.move(to: CGPoint(x: random, y: 700), duration: 37),
-            SKAction.removeFromParent()
-        ]))
-        //        if projectile.position.y >= 300 {
-        //            projectile.removeFromParent()
-        //        }
-        
-        //projectile.run(move)
-        //Destroy projectile
-        
-    }
-    
-    @objc func createProjectile1() {//Creates based on timer
-        projectile = SKSpriteNode(imageNamed: "projectile_1")
-        projectile.position = CGPoint(x: 0, y: 0)
-        self.addChild(projectile)
-        projectile.zPosition = 2
-        //---Here---
-        print("Created")
-        let random = Int.random(in: -300 ..< 300)
-        
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: random, y: 700))
-        path.addLine(to: CGPoint(x: random, y: -600))
-        let move = SKAction.follow(path.cgPath, asOffset: true, orientToPath: true, speed: 50)
-        //SKAction.sequence(<#T##actions: [SKAction]##[SKAction]#>)
-        projectile.run(SKAction.sequence([
-            SKAction.move(to: CGPoint(x: random, y: 700), duration: 37),
-            SKAction.removeFromParent()
-        ]))
-        //        if projectile.position.y >= 300 {
-        //            projectile.removeFromParent()
-        //        }
-        
-        //projectile.run(move)
-        //Destroy projectile
-        
-    }
-    
-    func projectileMovement() {
-        //After "created"
+    @objc func moving() {
+        let removeDoodle = SKAction.removeFromParent()
+        //let bol = true
+        while counter <= 20{
+            //Create an if... that checks for existence; if it does, do nothing (cause for... to run again; else, do the code and break)
+            //if isCreated[counter] == false {
+            projectiles[counter] = SKSpriteNode(imageNamed: "projectile_1")
+            projectiles[counter].position = CGPoint(x: 0, y: 0)
+            self.addChild(projectiles[counter])
+            projectiles[counter].zPosition = 2//Prev 1
+            
+            print("Created")
+            let random = Int.random(in: -300 ..< 300)
+            
+            let path = UIBezierPath()
+            path.move(to: CGPoint(x: random, y: 700))
+            path.addLine(to: CGPoint(x: random, y: -600))
+            let move = SKAction.follow(path.cgPath, asOffset: true, orientToPath: true, speed: 50)
+            
+            projectiles[counter].run(SKAction.sequence([
+                move,
+                removeDoodle
+            ]))
+            //isCreated[counter] = true
+            if counter >= 20 {
+                counter = 1
+            }
+            counter += 1
+            break
+            //}
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -167,11 +140,22 @@ class GameScene: SKScene {
         let damageShopLocation = touch.location(in: self)
         var projectileTapped: Bool = true
         
-        if projectile.contains(projectileLocation) {
-            //projectile.position = CGPoint(x: 0, y: 700)//Destroy instead of relocate
-            print("Proj touched")
-            projectileTapped = false
-            projectile.removeFromParent()//Dismisses sprite
+//        if projectile.contains(projectileLocation) {
+//            //projectile.position = CGPoint(x: 0, y: 700)//Destroy instead of relocate
+//            print("Proj touched")
+//            projectileTapped = false
+//            projectile.removeFromParent()//Dismisses sprite
+//        }
+        
+        for projectile in projectiles{
+            //let touchLocation = touch.location(in: self)
+            
+            if projectile.contains(projectileLocation) {
+                projectile.position = CGPoint(x: -100000, y: -100000)//Temp solution?
+                projectile.removeFromParent()
+                print("Doodle broken")
+                projectileTapped = false
+            }
         }
         
         if square.contains(squareLocation) && projectileTapped {
@@ -289,11 +273,13 @@ class GameScene: SKScene {
     /*
      This may be relocated; makes sure the music is playing throughout the game (should change based on visible attacks)
      */
+    /*
     override func update(_ currentTime: TimeInterval) {
         if !aPlayer.isPlaying {
             aPlayer.play()
         }
     }
+ */
 }
 
 /*
