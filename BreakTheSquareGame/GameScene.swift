@@ -17,7 +17,7 @@ class GameScene: SKScene {
     var coins = 0//In-game currency
     var coinWorth = 5
     var coinReward = 20
-    var playerDamage = 5//5
+    var playerDamage = 20//5
     var damageCost = 10
     var level = 0//Counter that changes difficulty and various game aspects
     //var coinMultiplier = ["first": 4, "second": 3]//This is an experimental dictionary of multiplier values
@@ -70,7 +70,7 @@ class GameScene: SKScene {
         
         
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(moving), userInfo: nil, repeats: true)
+        //gameTimer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(moving), userInfo: nil, repeats: true)
         
         //Shrink this image! Also, lengthen the player bar and add some labels
         damageShop = SKSpriteNode(imageNamed: "shop_damage")
@@ -250,7 +250,7 @@ class GameScene: SKScene {
             })
             underIsSeen = false
             print("Projectiles start")
-            
+            gameTimer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(moving), userInfo: nil, repeats: true)
         }
     }
     
