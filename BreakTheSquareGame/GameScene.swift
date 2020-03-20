@@ -32,6 +32,7 @@ class GameScene: SKScene {
     var gameTimer: Timer!//A timer
     
     private var counter = 1
+    private var hit = 0
     //private var doodle: [SKSpriteNode]!
     private var (doodle0, doodle1, doodle2, doodle3, doodle4, doodle5, doodle6, doodle7, doodle8, doodle9, doodle10, doodle11, doodle12,doodle13, doodle14, doodle15, doodle16, doodle17, doodle18, doodle19, doodle20) = (SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"))
     private var projectiles: [SKSpriteNode]!
@@ -50,6 +51,7 @@ class GameScene: SKScene {
         player.position = CGPoint(x: 0, y: -500)
         self.addChild(player)
         player.zPosition = 1
+        player.name = "player"
         
         underSquare = SKSpriteNode(imageNamed: "square_under_1")
         underSquare.position = CGPoint(x: 0, y: 300)
@@ -108,6 +110,7 @@ class GameScene: SKScene {
             projectiles[counter].position = CGPoint(x: 0, y: 0)
             self.addChild(projectiles[counter])
             projectiles[counter].zPosition = 2//Prev 1
+            projectiles[counter].name = "projectile"
             
             print("Created")
             let random = Int.random(in: -300 ..< 300)
@@ -254,32 +257,26 @@ class GameScene: SKScene {
         }
     }
     
-    //    @objc func sendProjectile() {//Used directly from tutorial of Brian
-    //        let projectilePos = GKRandomDistribution(lowestValue: 0, highestValue: 300)
-    //        let position = CGFloat(projectilePos.nextInt())
-    //
-    //        projectile.position = CGPoint(x: position, y: self.frame.size.height + projectile.size.height)
-    //
-    //        self.addChild(projectile)
-    //
-    //        let animatedDuration: TimeInterval = 6
-    //        var actionArray = [SKAction]()
-    //        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -projectile.size.height), duration: animatedDuration))
-    //        actionArray.append(SKAction.removeFromParent())
-    //
-    //        projectile.run(SKAction.sequence(actionArray))
-    //    }
+    func collisions() {
+        for counter in 1...20 {
+            if projectiles[counter].intersects(player) {//Seems to be inconsistent
+                print("Player was hit\(hit+=1)")
+                projectiles[counter].removeFromParent()
+            }
+        }
+    }
     
     /*
      This may be relocated; makes sure the music is playing throughout the game (should change based on visible attacks)
      */
-    /*
     override func update(_ currentTime: TimeInterval) {
+        collisions()
+        /*
         if !aPlayer.isPlaying {
             aPlayer.play()
         }
-    }
  */
+    }
 }
 
 /*
