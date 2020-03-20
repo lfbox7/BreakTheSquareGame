@@ -14,6 +14,8 @@ class GameScene: SKScene {
     var underIsSeen = false
     var squareMaxHealth = 100
     var squareCurrentHealth = 100
+    var playerMaxHealth = 100
+    var playerCurrentHealth = 100
     var coins = 0//In-game currency
     var coinWorth = 5
     var coinReward = 20
@@ -21,6 +23,7 @@ class GameScene: SKScene {
     var damageCost = 10
     var level = 0//Counter that changes difficulty and various game aspects
     //var coinMultiplier = ["first": 4, "second": 3]//This is an experimental dictionary of multiplier values
+    var projectileDamage = 5//Will change based on level
     
     var squareBroken: SKEmitterNode!//An emitter animation for breaking the square
     var gameBackground: SKSpriteNode!//The background of the game
@@ -30,6 +33,7 @@ class GameScene: SKScene {
     var underSquare: SKSpriteNode!//What is underneath the square???
     var damageShop: SKSpriteNode!//Increases damage
     var gameTimer: Timer!//A timer
+    //UserDefaults.standard.set(false, forKey: "isLoggedIn")
     
     private var counter = 1
     private var hit = 0
@@ -257,11 +261,24 @@ class GameScene: SKScene {
         }
     }
     
+    func playerHealthChecker() {
+        if playerCurrentHealth <= 0 {
+            //End game
+            print("End game")
+            //Return to main menu, add coins, check death total to reveal new abilities and unlock tutorial
+        }
+    }
+    
     func collisions() {
         for counter in 1...20 {
+            
             if projectiles[counter].intersects(player) {//Seems to be inconsistent
-                print("Player was hit\(hit+=1)")
+                projectiles[counter].position = CGPoint(x: -100000, y: -100000)
                 projectiles[counter].removeFromParent()
+                hit += 1
+                print("Player was hit\(hit)")
+                playerCurrentHealth -= projectileDamage
+                print("\(playerCurrentHealth) / \(playerMaxHealth)")
             }
         }
     }
@@ -271,6 +288,7 @@ class GameScene: SKScene {
      */
     override func update(_ currentTime: TimeInterval) {
         collisions()
+        playerHealthChecker()
         /*
         if !aPlayer.isPlaying {
             aPlayer.play()
