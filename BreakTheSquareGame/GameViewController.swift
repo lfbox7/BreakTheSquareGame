@@ -11,6 +11,9 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
+    @IBOutlet weak var pauseButton: UIBarButtonItem!
+    //let game: GameScene = GameScene()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,14 +46,26 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
     @IBAction func onPause(_ sender: Any) {
         //There will be a menu here that pauses game
-        dismiss(animated: true, completion: nil)
+        //        Alert(title: Text(scoreTitle), message: Text("Your score: \(userScore)"), dismissButton: .default(Text("Continue")){
+        //        self.askQuestion()
+        //        })
+        let alert: UIAlertController = UIAlertController(title: "Break the Square", message: "Paused", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Continue", style: .default) { (UIAlertAction) in
+            //Contains the countdown to continue?
+        })
+        alert.addAction(UIAlertAction(title: "Back to Menus", style: .default) { (UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        })
+        self.present(alert, animated: true, completion: nil)
+        
+        
     }
     
 }

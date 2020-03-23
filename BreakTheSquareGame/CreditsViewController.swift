@@ -9,10 +9,14 @@
 import UIKit
 
 class CreditsViewController: UIViewController {
+    var game: GameScene = GameScene()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        let coinsDisplay: Int = game.coins
+        print(UserDefaults.standard.object(forKey: "coins") as! Int)
         // Do any additional setup after loading the view.
     }
     

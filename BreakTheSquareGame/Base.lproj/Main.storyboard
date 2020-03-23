@@ -25,6 +25,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="pauseButton" destination="Lhz-Sd-mP6" id="vbb-Vf-iQF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
@@ -99,6 +102,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="M2s-kX-XO6"/>
                     </view>
+                    <connections>
+                        <outlet property="creditsButton" destination="ysE-4h-tzv" id="tRM-JY-Zg1"/>
+                        <outlet property="startButton" destination="3Xg-7G-aMo" id="WCH-7N-OuQ"/>
+                        <outlet property="tutorialButton" destination="KUt-Gd-l8q" id="o2Y-hI-Okq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrI-4h-rjH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

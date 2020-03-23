@@ -9,7 +9,12 @@
 import UIKit
 
 class MenuViewController: UIViewController {
-
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var tutorialButton: UIButton!
+    @IBOutlet weak var creditsButton: UIButton!
+    
+    var value: Int = 17
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
