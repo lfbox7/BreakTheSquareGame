@@ -15,7 +15,7 @@ class CreditsViewController: UIViewController {
         super.viewDidLoad()
 
         
-        let coinsDisplay: Int = game.coins
+        //let coinsDisplay: Int = game.coins
         print(UserDefaults.standard.object(forKey: "coins") as! Int)
         // Do any additional setup after loading the view.
     }

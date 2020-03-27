@@ -11,6 +11,7 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
+    //let game: GameData! =
     @IBOutlet weak var pauseButton: UIBarButtonItem!
     //let game: GameScene = GameScene()
     
@@ -52,18 +53,28 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func onPause(_ sender: Any) {
+//        let scene: GameScene = GameScene()
+//        scene.pause(paused: true)
+        //GameScene.pause(GameScene)
+        
+        
         //There will be a menu here that pauses game
         //        Alert(title: Text(scoreTitle), message: Text("Your score: \(userScore)"), dismissButton: .default(Text("Continue")){
         //        self.askQuestion()
         //        })
-        let alert: UIAlertController = UIAlertController(title: "Break the Square", message: "Paused", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Continue", style: .default) { (UIAlertAction) in
-            //Contains the countdown to continue?
-        })
-        alert.addAction(UIAlertAction(title: "Back to Menus", style: .default) { (UIAlertAction) in
-            self.dismiss(animated: true, completion: nil)
-        })
-        self.present(alert, animated: true, completion: nil)
+        
+        
+//        game.pause(paused: true)
+//        let alert: UIAlertController = UIAlertController(title: "Break the Square", message: "Paused", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Continue", style: .default) { (UIAlertAction) in
+//
+//            game.pause(paused: false)
+//            game.someCount = 1//Requires "self" for accurate/updated? Or use standard
+//        })
+//        alert.addAction(UIAlertAction(title: "Back to Menus", style: .default) { (UIAlertAction) in
+//            self.dismiss(animated: true, completion: nil)
+//        })
+//        self.present(alert, animated: true, completion: nil)
         
         
     }
