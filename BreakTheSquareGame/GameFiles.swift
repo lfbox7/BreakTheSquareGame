@@ -9,9 +9,23 @@
 import Foundation
 import SpriteKit
 
+//class Sci{
+//    var x: Int = 0
+//    func print(){
+//        x = x + 1
+//        print(x)
+//    }
+//}
+//
+//class An: Sci {
+//
+//}
+
 class GameFiles/*: GameScene*/ {
     
-
+    func test () {
+        let red, green, blue: Double
+    }
 
     /*
      THIS IS WHERE PREPARATION WENT
