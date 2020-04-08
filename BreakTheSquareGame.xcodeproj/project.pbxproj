@@ -10,6 +10,9 @@
 		8B1436A2242820CE00B5AA37 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1436A1242820CE00B5AA37 /* GameData.swift */; };
 		8B935D66240CC95C009808B5 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935D65240CC95C009808B5 /* TutorialViewController.swift */; };
 		8B935D68240CC975009808B5 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935D67240CC975009808B5 /* CreditsViewController.swift */; };
+		8B9DC1E2243E531200CDC037 /* General Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B9DC1E1243E531200CDC037 /* General Music.mp3 */; };
+		8B9DC1E4243E555900CDC037 /* Middle Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B9DC1E3243E555900CDC037 /* Middle Music.mp3 */; };
+		8B9DC1E6243E55F300CDC037 /* Faster Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B9DC1E5243E55F300CDC037 /* Faster Music.mp3 */; };
 		8BC01501240A4EF200656FBB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC01500240A4EF200656FBB /* MenuViewController.swift */; };
 		8BE209A924079474005C44BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE209A824079474005C44BE /* AppDelegate.swift */; };
 		8BE209AB24079474005C44BE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8BE209AA24079474005C44BE /* GameScene.sks */; };
@@ -46,6 +49,9 @@
 		8B1436A1242820CE00B5AA37 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		8B935D65240CC95C009808B5 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		8B935D67240CC975009808B5 /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
+		8B9DC1E1243E531200CDC037 /* General Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "General Music.mp3"; path = "../../../Break The Square GUIs/Music/Strings/General Music.mp3"; sourceTree = "<group>"; };
+		8B9DC1E3243E555900CDC037 /* Middle Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Middle Music.mp3"; path = "../../../Break The Square GUIs/Music/Strings/Middle Music.mp3"; sourceTree = "<group>"; };
+		8B9DC1E5243E55F300CDC037 /* Faster Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Faster Music.mp3"; path = "../../../Break The Square GUIs/Music/Strings/Faster Music.mp3"; sourceTree = "<group>"; };
 		8BC01500240A4EF200656FBB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8BE209A524079474005C44BE /* BreakTheSquareGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakTheSquareGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE209A824079474005C44BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +129,9 @@
 				8B935D65240CC95C009808B5 /* TutorialViewController.swift */,
 				8B935D67240CC975009808B5 /* CreditsViewController.swift */,
 				8BE209DC2407960F005C44BE /* MyParticle.sks */,
+				8B9DC1E3243E555900CDC037 /* Middle Music.mp3 */,
+				8B9DC1E1243E531200CDC037 /* General Music.mp3 */,
+				8B9DC1E5243E55F300CDC037 /* Faster Music.mp3 */,
 				8BE209B524079477005C44BE /* Assets.xcassets */,
 				8B1436A1242820CE00B5AA37 /* GameData.swift */,
 				8BE209AC24079474005C44BE /* Actions.sks */,
@@ -256,11 +265,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B9DC1E6243E55F300CDC037 /* Faster Music.mp3 in Resources */,
 				8BE209B424079474005C44BE /* Main.storyboard in Resources */,
 				8BE209DD2407960F005C44BE /* MyParticle.sks in Resources */,
 				8BE209AB24079474005C44BE /* GameScene.sks in Resources */,
 				8BE209B624079477005C44BE /* Assets.xcassets in Resources */,
 				8BE209B924079477005C44BE /* LaunchScreen.storyboard in Resources */,
+				8B9DC1E2243E531200CDC037 /* General Music.mp3 in Resources */,
+				8B9DC1E4243E555900CDC037 /* Middle Music.mp3 in Resources */,
 				8BE209AD24079474005C44BE /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

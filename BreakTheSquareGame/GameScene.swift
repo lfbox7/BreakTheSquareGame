@@ -22,9 +22,9 @@ class GameScene: SKScene{
     var playerMaxHealth = 500//100
     var playerCurrentHealth = 500//100
     var coins = 0//In-game currency
-    var coinWorth = 5
-    var coinReward = 20
-    var playerDamage = 50//5
+    var coinWorth = 20//
+    var coinReward = 20//
+    var playerDamage = 20//5
     var damageCost = 10
     var level = 0//Counter that changes difficulty and various game aspects
     var projectileDamage = 5//Will change based on level
@@ -134,13 +134,14 @@ class GameScene: SKScene{
         if level >= 5 {
             projectileTimer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(projectileMovement), userInfo: nil, repeats: true)
         }
-        
-        bloomCountDown = Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(bloomCreation), userInfo: nil, repeats: true)
+        if level >= 10 {
+                    bloomCountDown = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(bloomCreation), userInfo: nil, repeats: true)
+        }
     }
     
     func preparation() {//Left in here to set standard defaults
         
-        setUserDefaults()//Used to reset values back to default; will be controlled by button in credits
+        //setUserDefaults()//Used to reset values back to default; will be controlled by button in credits
         
         UserDefaults.standard.set(isGamePaused, forKey: "isGamePaused")//Might not belong here
         
@@ -362,6 +363,9 @@ class GameScene: SKScene{
     
     func levelChanges() {
         underIsSeen = true
+        if level == 1 && underIsSeen {
+            isPlaying = true
+        }
         if level == 3 && underIsSeen == true {
             underSquare.texture = SKTexture(imageNamed: "square_under_1")
             square.isHidden = true
@@ -383,6 +387,8 @@ class GameScene: SKScene{
             underIsSeen = false
             
         } else if level == 5 && underIsSeen == true{
+            isPlaying = true
+            
             underSquare.texture = SKTexture(imageNamed: "square_under_3")
             square.isHidden = true
             square.position = CGPoint(x: 0, y: 5000)
@@ -397,15 +403,16 @@ class GameScene: SKScene{
             
         } else if level == 6 && underIsSeen == true{
             //pause(paused: true)
-        } else if level == 15 {//Should stop all activity
-            for counter in 0...20 {
-                projectiles[counter].texture = SKTexture(imageNamed: "projectile_2")
-            }
+        } else if level == 10 {//Should stop all activity
+            isPlaying = true
+            bloomCountDown = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(bloomCreation), userInfo: nil, repeats: true)
         } else if level == 20 {
             //Change the background
         } else if level == 25 {
             //Change the square and add blooms
         }
+        
+        
     }
     
     func playerHealthChecker() {
@@ -455,15 +462,46 @@ class GameScene: SKScene{
         setUserDefaults()
         //bloomBoom()
         //print("Timer: \(bloomTimers[1].timeInterval)")
+        if (level == 1 && isPlaying) {
+            let sound = Bundle.main.path(forResource: "General Music", ofType: "mp3")
+            
+            do {
+                aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+            }
+            catch{
+                print("Something happened: \(error)")
+            }
+            isPlaying = false
+        } else if(level == 5 && isPlaying) {
+            let sound = Bundle.main.path(forResource: "Middle Music", ofType: "mp3")
+            
+            do {
+                aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+            }
+            catch{
+                print("Something happened: \(error)")
+            }
+            isPlaying = false
+        } else if(level == 10 && isPlaying) {
+            let sound = Bundle.main.path(forResource: "Faster Music", ofType: "mp3")
+            
+            do {
+                aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+            }
+            catch{
+                print("Something happened: \(error)")
+            }
+            isPlaying = false
+        }
         
-        /*
          if !aPlayer.isPlaying {
-         aPlayer.play()
+            aPlayer.play()
          }
-         */
         
         //Create a method that sets all standards; when the app starts, set the standards to that variables IF the variables have already been used
     }
+    
+    var isPlaying: Bool = false
 }
 
 /*
