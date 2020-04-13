@@ -69,6 +69,8 @@ class GameScene: SKScene{
     //    var value: Int = 16
     //    var array: [Int] = []
     
+    var isPlaying: Bool = false
+    
     var aPlayer = AVAudioPlayer()//Audio player
     
     private let files: GameFiles = GameFiles()
@@ -135,7 +137,7 @@ class GameScene: SKScene{
             projectileTimer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(projectileMovement), userInfo: nil, repeats: true)
         }
         if level >= 10 {
-                    bloomCountDown = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(bloomCreation), userInfo: nil, repeats: true)
+            bloomCountDown = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(bloomCreation), userInfo: nil, repeats: true)
         }
     }
     
@@ -284,7 +286,7 @@ class GameScene: SKScene{
                 projectile.position = CGPoint(x: -100000, y: -100000)//Temp solution?
                 projectile.removeFromParent()
                 print("Doodle broken")
-
+                
                 projectileTapped = false
             }
         }
@@ -294,9 +296,9 @@ class GameScene: SKScene{
             val.removeFromParent()
             if !bloomTimers.isEmpty {
                 //bloomTimers[currentBloomTimer].invalidate()
-            //print("Before removal: \(bloomTimers.count)")
+                //print("Before removal: \(bloomTimers.count)")
                 bloomTimers.remove(at: bloomTimers.count - 1).invalidate()
-            //print("After removal: \(bloomTimers.count)")
+                //print("After removal: \(bloomTimers.count)")
                 //bloomTimers.remove(at: currentBloomTimer)
             }
             bloomTapped = false
@@ -419,6 +421,10 @@ class GameScene: SKScene{
         if playerCurrentHealth <= 0 {
             //End game
             print("End game")
+            let controller: MenuViewController = MenuViewController()
+            let game: GameViewController = GameViewController()
+            game.performSegue(withIdentifier: "menuSegue", sender: nil)
+            //controller.onDeath()
             //Return to main menu, add coins, check death total to reveal new abilities and unlock tutorial
         }
     }
@@ -456,12 +462,7 @@ class GameScene: SKScene{
         UserDefaults.standard.set(isGamePaused, forKey: "isGamePaused")//Might not belong here
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        collisions()
-        playerHealthChecker()
-        setUserDefaults()
-        //bloomBoom()
-        //print("Timer: \(bloomTimers[1].timeInterval)")
+    func musicPlayer() {
         if (level == 1 && isPlaying) {
             let sound = Bundle.main.path(forResource: "General Music", ofType: "mp3")
             
@@ -494,14 +495,22 @@ class GameScene: SKScene{
             isPlaying = false
         }
         
-         if !aPlayer.isPlaying {
+        if !aPlayer.isPlaying {
             aPlayer.play()
-         }
+        }
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        collisions()
+        playerHealthChecker()
+        setUserDefaults()
+        //bloomBoom()
+        //print("Timer: \(bloomTimers[1].timeInterval)")
         
         //Create a method that sets all standards; when the app starts, set the standards to that variables IF the variables have already been used
     }
     
-    var isPlaying: Bool = false
+    
 }
 
 /*

@@ -33,6 +33,18 @@ class MenuViewController: UIViewController {
         performSegue(withIdentifier: "creditsSegue", sender: nil)
     }
     
+    func onDeath() {
+        //performSegue(withIdentifier: "menuSegue", sender: nil)
+        print("In onDeath")
+        let menu = MenuViewController()
+        //menu.present(MenuViewController(), animated: true) {}
+        dismiss(animated: true, completion: nil)
+        //navigationController?.popViewController(animated: true)
+//        present(MenuViewController, animated: true) {
+//
+//        }
+    }
+    
     /*
     // MARK: - Navigation
 
