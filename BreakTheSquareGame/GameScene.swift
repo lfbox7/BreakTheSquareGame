@@ -11,10 +11,6 @@ import GameplayKit
 import AVFoundation
 
 class GameScene: SKScene{
-    //var game: GameData = GameData()
-    //let red, green, blue: Double
-    
-    //var val: Int = 4
     
     var underIsSeen = false
     var squareMaxHealth = 100
@@ -53,43 +49,26 @@ class GameScene: SKScene{
     var projectiles: [SKSpriteNode] = []
     
     var (bloom0, bloom1, bloom2, bloom3, bloom4, bloom5, bloom6, bloom7, bloom8, bloom9, bloom10) = (SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"))
-    //var (t1, t2, t3, t4, t5, t6, t7, t8, t9, t10) = (Timer(), Timer(), Timer(), Timer(), Timer(), Timer(), Timer(), Timer(), Timer(), Timer())
     var blooms: [SKSpriteNode] = []
     var bloomCountDown: Timer!
     var bloomTimers: [Timer] = []
-    //var bloomTimer: Timer!
     var (timed1, timed2, timed3, timed4, timed5, timed6, timed7, timed8, timed9, timed10) = (0,0,0,0,0,0,0,0,0,0)
     var times: [Int] = []
     var timed = 0
     var timeInterval = 5.0
     var bloomDmgMult = 1
-    //private let scene: GameScene = GameScene()
-    //var scene: GameScene! = nil
-    //    var val2: Int!
-    //    var value: Int = 16
-    //    var array: [Int] = []
     
     var isPlaying: Bool = false
     
     var aPlayer = AVAudioPlayer()//Audio player
     
     private let files: GameFiles = GameFiles()
+    private let game = GameViewController()
     
     override func didMove(to view: SKView) {
-        var sometimers: [Timer] = []
-        var timed: Timer
-        for count in 0..<3{
-            timed = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (Timer) in
-                print("Something")
-            }
-            sometimers.append(timed)
-        }
-        print("Total: \(sometimers.count)")
-        sometimers.remove(at: sometimers.count - 1).invalidate()
-        sometimers.remove(at: sometimers.count - 1).invalidate()
-        sometimers.remove(at: sometimers.count - 1).invalidate()
-        //sometimers.remove(at: 0)
-        print("Total: \(sometimers.count)")
+        //let view = UIView()
+        
+        //setUserDefaults()
         
         gameBackground = SKSpriteNode(imageNamed: "game_background")
         gameBackground.position = CGPoint(x: 0, y: 0)
@@ -123,9 +102,6 @@ class GameScene: SKScene{
         
         blooms = [bloom0, bloom1, bloom2, bloom3, bloom4, bloom5, bloom6, bloom7, bloom8, bloom9, bloom10]
         times = [timed1, timed2, timed3, timed4, timed5, timed6, timed7, timed8, timed9, timed10]
-        //bloomTimers = [t1, t2, t3, t4, t5, t6, t7, t8, t9, t10]
-        
-        //Shrink this image! Also, lengthen the player bar and add some labels
         damageShop = SKSpriteNode(imageNamed: "shop_damage")
         self.addChild(damageShop)
         damageShop.position = CGPoint(x: -165, y: -500)
@@ -189,16 +165,12 @@ class GameScene: SKScene{
         if UserDefaults.standard.object(forKey: "isGamePaused") != nil {
             isGamePaused = UserDefaults.standard.object(forKey: "isGamePaused") as! Bool
         }
-        
-        //projectileMovement()
     }
     
-    @objc func projectileMovement() {//Could use a classic func with different timer
-        
+    @objc func projectileMovement() {
         let removeDoodle = SKAction.removeFromParent()
         //let bol = true
         while projCounter <= 20{
-            //Create an if... that checks for existence; if it does, do nothing (cause for... to run again; else, do the code and break)
             print("Counter: \(projCounter)")
             projectiles[projCounter] = SKSpriteNode(imageNamed: "projectile_1")//There needs to be a switch statement to change textures based on level
             projectiles[projCounter].position = CGPoint(x: 0, y: 0)
@@ -223,7 +195,6 @@ class GameScene: SKScene{
             }
             projCounter += 1
             break
-            //}
         }
     }
     
@@ -233,10 +204,7 @@ class GameScene: SKScene{
         self.addChild(expl)
         expl.zPosition = 3
         expl.name = "bloomTest"
-        
-        //var this = SKAction.setTexture(SKTexture(imageNamed: "bloom_1"))
         var counting = times[bloomCounter]
-        //var currentBloom = blooms[bloomCounter]
         bloomTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (Timer) in
             
             if counting == 0 {
@@ -250,7 +218,6 @@ class GameScene: SKScene{
                 print("1")
             } else if counting == 3 {
                 print("BOOM")
-                //self.blooms[self.bloomCounter].texture = SKTexture(imageNamed: "square_break_4")
                 self.playerCurrentHealth -= 20 * self.bloomDmgMult
                 expl.removeFromParent()
                 Timer.invalidate()
@@ -295,11 +262,7 @@ class GameScene: SKScene{
             print("Popped!")
             val.removeFromParent()
             if !bloomTimers.isEmpty {
-                //bloomTimers[currentBloomTimer].invalidate()
-                //print("Before removal: \(bloomTimers.count)")
                 bloomTimers.remove(at: bloomTimers.count - 1).invalidate()
-                //print("After removal: \(bloomTimers.count)")
-                //bloomTimers.remove(at: currentBloomTimer)
             }
             bloomTapped = false
             //playerCurrentHealth += 20 * bloomDmgMult
@@ -351,7 +314,6 @@ class GameScene: SKScene{
             coins += coinReward
             square.texture = SKTexture(imageNamed: "square")
             levelIncrease()
-            //Call a function that does a short animation involving what's underneath the square
             levelChanges()
         }
     }
@@ -419,13 +381,80 @@ class GameScene: SKScene{
     
     func playerHealthChecker() {
         if playerCurrentHealth <= 0 {
-            //End game
             print("End game")
-            let controller: MenuViewController = MenuViewController()
-            let game: GameViewController = GameViewController()
-            game.performSegue(withIdentifier: "menuSegue", sender: nil)
-            //controller.onDeath()
-            //Return to main menu, add coins, check death total to reveal new abilities and unlock tutorial
+            self.view?.window!.rootViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
+            self.removeAllActions()
+            self.removeAllChildren()
+            projectileTimer.invalidate()
+            //bloomTimer!.invalidate()
+            bloomCountDown.invalidate()
+            for count in 0 ..< bloomTimers.count {
+                bloomTimers[count].invalidate()
+            }
+            playerCurrentHealth = 100
+            playerMaxHealth = 100
+            underIsSeen = false
+            squareMaxHealth = 100
+            squareCurrentHealth = 100
+            coins = 0
+            coinWorth = 20//SOMETHING HERE
+            coinReward = 20
+            playerDamage = 5//5
+            damageCost = 10
+            level = 0//Counter that changes difficulty and various game aspects
+            projectileDamage = 5//Will change based on level
+            isGamePaused = false
+            checker = true//This statement will be outside, or in a UserDefault
+            positionsX = [Int?](repeating: 0, count: 20)//Creates an array of size 20 filled with nils
+            positionsY = [Int?](repeating: 0, count: 20)
+            someCount = 0
+            projCounter = 1//Loops the projectiles
+            bloomCounter = 0//Loops the blooms
+            hit = 0//Tests if player is hit
+            
+            UserDefaults.standard.set(playerDeaths, forKey: "playerDeaths")
+            UserDefaults.standard.set(0, forKey: "playerCoins")
+            UserDefaults.standard.set(underIsSeen, forKey: "underIsSeen")
+            UserDefaults.standard.set(squareMaxHealth, forKey: "squareMaxHealth")
+            UserDefaults.standard.set(squareCurrentHealth, forKey: "squareCurrentHealth")
+            UserDefaults.standard.set(playerMaxHealth, forKey: "playerMaxHealth")
+            UserDefaults.standard.set(playerCurrentHealth, forKey: "playerCurrentHealth")
+            UserDefaults.standard.set(coins, forKey: "coins")
+            UserDefaults.standard.set(coinWorth, forKey: "coinWorth")
+            UserDefaults.standard.set(coinReward, forKey: "coinReward")
+            UserDefaults.standard.set(playerDamage, forKey: "playerDamage")
+            UserDefaults.standard.set(damageCost, forKey: "damageCost")
+            UserDefaults.standard.set(level, forKey: "level")
+            UserDefaults.standard.set(projectileDamage, forKey: "projectileDamage")
+            UserDefaults.standard.set(isGamePaused, forKey: "isGamePaused")
+            UserDefaults.standard.set(100, forKey: "playerMaxHealth")
+            UserDefaults.standard.set(100, forKey: "playerCurrentHealth")
+            
+            /*
+             This needs to restart EVERYTHING
+             */
+            print(playerMaxHealth)
+            print(playerCurrentHealth)
+            
+            /*
+             var playerDeaths = 0
+             var gameBackground: SKSpriteNode!//The background of the game
+             var square: SKSpriteNode!//The square to tap
+             var player: SKSpriteNode!//The player
+             var underSquare: SKSpriteNode!//What is underneath the square???
+             var damageShop: SKSpriteNode!//Increases damage
+             var (doodle0, doodle1, doodle2, doodle3, doodle4, doodle5, doodle6, doodle7, doodle8, doodle9, doodle10, doodle11, doodle12,doodle13, doodle14, doodle15, doodle16, doodle17, doodle18, doodle19, doodle20) = (SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"), SKSpriteNode(imageNamed: "projectile_1"))
+             var projectiles: [SKSpriteNode] = []
+             var (bloom0, bloom1, bloom2, bloom3, bloom4, bloom5, bloom6, bloom7, bloom8, bloom9, bloom10) = (SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"), SKSpriteNode(imageNamed: "bloom_blank"))
+             var blooms: [SKSpriteNode] = []
+             var bloomTimers: [Timer] = []
+             var (timed1, timed2, timed3, timed4, timed5, timed6, timed7, timed8, timed9, timed10) = (0,0,0,0,0,0,0,0,0,0)
+             var times: [Int] = []
+             var timed = 0
+             var timeInterval = 5.0
+             var bloomDmgMult = 1
+             var isPlaying: Bool = false
+             */
         }
     }
     
@@ -463,7 +492,7 @@ class GameScene: SKScene{
     }
     
     func musicPlayer() {
-        if (level == 1 && isPlaying) {
+        if ((level >= 1 && level <= 4) && isPlaying) {
             let sound = Bundle.main.path(forResource: "General Music", ofType: "mp3")
             
             do {
@@ -473,7 +502,7 @@ class GameScene: SKScene{
                 print("Something happened: \(error)")
             }
             isPlaying = false
-        } else if(level == 5 && isPlaying) {
+        } /*else if((level >= 5 && level <= 9) && isPlaying) {
             let sound = Bundle.main.path(forResource: "Middle Music", ofType: "mp3")
             
             do {
@@ -483,7 +512,7 @@ class GameScene: SKScene{
                 print("Something happened: \(error)")
             }
             isPlaying = false
-        } else if(level == 10 && isPlaying) {
+        }*/ else if((level >= 10) && isPlaying) {
             let sound = Bundle.main.path(forResource: "Faster Music", ofType: "mp3")
             
             do {
@@ -504,10 +533,7 @@ class GameScene: SKScene{
         collisions()
         playerHealthChecker()
         setUserDefaults()
-        //bloomBoom()
-        //print("Timer: \(bloomTimers[1].timeInterval)")
-        
-        //Create a method that sets all standards; when the app starts, set the standards to that variables IF the variables have already been used
+        musicPlayer()
     }
     
     
@@ -521,8 +547,3 @@ class GameScene: SKScene{
  
  "" by
  */
-//SKAction.perform(<#T##selector: Selector##Selector#>, onTarget: <#T##Any#>)
-//SKAction.customAction(withDuration: <#T##TimeInterval#>, actionBlock: <#T##(SKNode, CGFloat) -> Void#>)
-//SKAction.playSoundFileNamed(<#T##soundFile: String##String#>, waitForCompletion: <#T##Bool#>)
-//For the if statements, create an SKAction var and run it???
-

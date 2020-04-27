@@ -52,7 +52,15 @@ class GameViewController: UIViewController {
         return true
     }
     
+    func death() {
+        //performSegue(withIdentifier: "menuSegue", sender: nil)
+        //self.dismiss(animated: true, completion: nil)
+        print("THIS IS THE BIT THAT STILL DOESNT WORK REEEEEEEE")
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func onPause(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
 //        let scene: GameScene = GameScene()
 //        scene.pause(paused: true)
         //GameScene.pause(GameScene)

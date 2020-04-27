@@ -45,6 +45,17 @@ class MenuViewController: UIViewController {
 //        }
     }
     
+    func temp() {
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let menu = story.instantiateViewController(identifier: "Menu View Controller")
+        menu.view.frame = (self.view?.frame)!
+        menu.view.layoutIfNeeded()
+        
+        UIView.transition(with: self.view!, duration: 0.3, options: .transitionFlipFromRight, animations: {
+            self.view?.window?.rootViewController = menu
+        }, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
