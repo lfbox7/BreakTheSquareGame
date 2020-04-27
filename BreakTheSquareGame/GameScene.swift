@@ -15,12 +15,12 @@ class GameScene: SKScene{
     var underIsSeen = false
     var squareMaxHealth = 100
     var squareCurrentHealth = 100
-    var playerMaxHealth = 500//100
-    var playerCurrentHealth = 500//100
+    var playerMaxHealth = 100//100
+    var playerCurrentHealth = 100//100
     var coins = 0//In-game currency
     var coinWorth = 20//
     var coinReward = 20//
-    var playerDamage = 20//5
+    var playerDamage = 5//5
     var damageCost = 10
     var level = 0//Counter that changes difficulty and various game aspects
     var projectileDamage = 5//Will change based on level
@@ -58,7 +58,7 @@ class GameScene: SKScene{
     var timeInterval = 5.0
     var bloomDmgMult = 1
     
-    var isPlaying: Bool = false
+    var isPlaying: Bool = true
     
     var aPlayer = AVAudioPlayer()//Audio player
     
@@ -411,6 +411,7 @@ class GameScene: SKScene{
             projCounter = 1//Loops the projectiles
             bloomCounter = 0//Loops the blooms
             hit = 0//Tests if player is hit
+            isPlaying = true//
             
             UserDefaults.standard.set(playerDeaths, forKey: "playerDeaths")
             UserDefaults.standard.set(0, forKey: "playerCoins")
@@ -493,34 +494,67 @@ class GameScene: SKScene{
     
     func musicPlayer() {
         if ((level >= 1 && level <= 4) && isPlaying) {
-            let sound = Bundle.main.path(forResource: "General Music", ofType: "mp3")
+//            let sound = Bundle.main.path(forResource: "General Music", ofType: "mp3")
+//
+//            do {
+//                aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+//            }
+//            catch{
+//                print("Something happened: \(error)")
+//            }
+//            isPlaying = false
             
-            do {
-                aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-            }
-            catch{
-                print("Something happened: \(error)")
+            if let asset = NSDataAsset(name: "General Music") {
+                do {
+                    aPlayer = try AVAudioPlayer(data: asset.data, fileTypeHint: "mp3")
+                    //play sound
+                } catch let error as NSError {
+                    print("Whoops! Music problem")
+                }
             }
             isPlaying = false
-        } /*else if((level >= 5 && level <= 9) && isPlaying) {
-            let sound = Bundle.main.path(forResource: "Middle Music", ofType: "mp3")
             
-            do {
-                aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-            }
-            catch{
-                print("Something happened: \(error)")
+        } else if((level >= 5 && level <= 9) && isPlaying) {
+//            let sound = Bundle.main.path(forResource: "Middle Music", ofType: "mp3")
+//
+//            do {
+//                aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+//            }
+//            catch{
+//                print("Something happened: \(error)")
+//            }
+            
+            if let asset = NSDataAsset(name: "Middle Music Full") {
+                do {
+                    aPlayer = try AVAudioPlayer(data: asset.data, fileTypeHint: "mp3")
+                    //play sound
+                } catch let error as NSError {
+                    print("Whoops! Music problem")
+                }
             }
             isPlaying = false
-        }*/ else if((level >= 10) && isPlaying) {
-            let sound = Bundle.main.path(forResource: "Faster Music", ofType: "mp3")
             
-            do {
-                aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+            isPlaying = false
+        } else if((level >= 10) && isPlaying) {
+//            let sound = Bundle.main.path(forResource: "Faster Music", ofType: "mp3")
+//
+//            do {
+//                aPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+//            }
+//            catch{
+//                print("Something happened: \(error)")
+//            }
+//            isPlaying = false
+            
+            if let asset = NSDataAsset(name: "Faster Music") {
+                do {
+                    aPlayer = try AVAudioPlayer(data: asset.data, fileTypeHint: "mp3")
+                    //play sound
+                } catch let error as NSError {
+                    print("Whoops! Music problem")
+                }
             }
-            catch{
-                print("Something happened: \(error)")
-            }
+            
             isPlaying = false
         }
         
